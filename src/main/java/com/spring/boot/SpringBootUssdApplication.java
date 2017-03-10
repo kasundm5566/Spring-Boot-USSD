@@ -4,6 +4,7 @@ import hms.kite.samples.api.SdpException;
 import hms.kite.samples.api.sms.SmsRequestSender;
 import hms.kite.samples.api.sms.messages.MtSmsReq;
 import hms.kite.samples.api.sms.messages.MtSmsResp;
+import hms.kite.samples.api.ussd.UssdRequestSender;
 import hms.kite.samples.api.ussd.messages.MoUssdReq;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -17,15 +18,17 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 
 @SpringBootApplication
+@Controller
 public class SpringBootUssdApplication implements WebApplicationInitializer {
 
-    @RequestMapping("/springussd")
+    @RequestMapping("/")
     @ResponseBody
-    void init() {
+    String init(MoUssdReq moUssdReq) {
 /*        try {
             MtSmsReq mtSmsReq = new MtSmsReq();
             mtSmsReq.setDestinationAddresses(Arrays.asList("tel:771234567"));
@@ -38,6 +41,12 @@ public class SpringBootUssdApplication implements WebApplicationInitializer {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+/*        try {
+            UssdRequestSender ussdRequestSender=new UssdRequestSender(new URL("http://127.0.0.1:7000/ussd/send"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }*/
+        return "App started";
     }
 
     public static void main(String[] args) {
